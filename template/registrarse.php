@@ -1,13 +1,8 @@
 <?php
 error_reporting (E_ALL);
 ini_set('display_errors', 1);
-exit;
 
 $data = $_POST;
-$data ["password"]= password_hash($data ["password"], PASSWORD_DEFAULT);
-echo json_encode ($data ["password"]);
-
-echo json_encode ($data);
 
 if ($data ['password'] !=$data ['password2']){
     echo "<h2>Las contraseñas no coinciden</h2>";
@@ -32,7 +27,7 @@ $nombre= $data ['nombre'];
 $apellido= $data ['apellido'];
 $dni= $data ['dni'];
 $email= $data ['email'];
-$contraseña= $data ['contraseña'];
+$contraseña=  password_hash($data ["password"], PASSWORD_DEFAULT);
 
 
 $sql= "INSERT INTO usuarios (nombre, apellido, dni, email, contraseña,)
@@ -46,15 +41,6 @@ else {
 
 }
 
-  
-
-
-$hash= '$2y$10$.96oltFhruzSZ1O1fpudG.EPv17Ov3e3ZM0dyuHQYj1yHMvYiZooq';
-
-if (password_verify('sofia2015', $hash)) {
-    echo '¡La contraseña es válida!';
-} else {
-    echo 'La contraseña no es válida.';
-}
+ 
 
 ?>
